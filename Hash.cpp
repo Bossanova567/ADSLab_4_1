@@ -3,13 +3,17 @@
 const float A = (sqrt(5) - 1)/2;
 
 void ChainedHashInsert(list<int>* T, int x, int m){
-    int index = HashFunctionMultiplication(x, m);
-    T[index].push_front(x);
+    if (x > 0) {
+        int index = HashFunctionMultiplication(x, m);
+        T[index].push_front(x);
+    }
+    else
+        cout << "You can only insert items > 0" << endl;
 }
 
 int ChainedHashSearch(list<int>* T, int k, int m){
     int index = HashFunctionMultiplication(k, m);
-    for(auto ii=T[index].begin(); ii != T[index].end(); ii++)
+    for (auto ii = T[index].begin(); ii != T[index].end(); ii++)
         if (*ii == k)
             return *ii;
     cout << "No such item in the list" << endl;
